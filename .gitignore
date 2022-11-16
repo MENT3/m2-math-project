@@ -4,3 +4,4 @@ __pycache__/
 *.csv
 *.docx*
 venv
+.DS_Store

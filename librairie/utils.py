@@ -20,16 +20,14 @@ def gini(arr):
   coef_ = 2. / n
   const_ = (n + 1.) / n
   weighted_sum = sum([(i+1)*yi for i, yi in enumerate(sorted_arr)])
-  return coef_*weighted_sum/(sorted_arr.sum()) - const_
+  return coef_ * weighted_sum / (sorted_arr.sum()) - const_
 
-def lorenz_curve(X):
+def lorenz_curve(X, ax):
   X_lorenz = np.sort(X)
-  X_lorenz = X_lorenz.cumsum()/X_lorenz.sum()
+  X_lorenz = X_lorenz.cumsum() / X_lorenz.sum()
   X_lorenz = np.insert(X_lorenz, 0, 0) 
 
-  fig, ax = plt.subplots(figsize=[6, 6])
   # scatter plot of Lorenz curve
-  ax.scatter(np.arange(X_lorenz.size)/(X_lorenz.size-1), X_lorenz, marker="x", s=100)
+  ax.scatter(np.arange(X_lorenz.size) / (X_lorenz.size-1), X_lorenz, marker="x", s=100)
   # line plot of equality
   ax.plot([0, 1], [0, 1], color="k")
-  plt.show()
